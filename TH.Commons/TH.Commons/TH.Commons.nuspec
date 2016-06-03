@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>TH.Commons</id>
+        <version>$version$</version>
+        <authors>P2P2 Sp. z o.o.</authors>
+        <owners>P2P2 Sp. z o.o.</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Time Harmony Commons</description>
+        <copyright>Copyright &#0169; 2015, P2P2 Sp. z o.o.</copyright>
+        <dependencies></dependencies>
+    </metadata>
+</package>
