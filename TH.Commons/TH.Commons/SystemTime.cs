@@ -6,22 +6,13 @@ namespace TH.Commons
     {
         private static DateTime? value;
 
-        public static DateTime Now
-        {
-            get { return value ?? DateTime.Now; }
-        }
+        public static DateTime Now => value ?? DateTime.Now;
 
-        public static DateTime UtcNow
-        {
-            get { return value ?? DateTime.UtcNow; }
-        }
+        public static DateTime UtcNow => value ?? DateTime.UtcNow;
 
-        public static DateTime Today
-        {
-            get { return (value ?? DateTime.Today).Date; }
-        }
+        public static DateTime Today => (value ?? DateTime.Today).Date;
 
-        public static DateTime GetInitialDate()
+        public static DateTime GetEpohDate()
         {
             return new DateTime(1970, 1, 1);
         }

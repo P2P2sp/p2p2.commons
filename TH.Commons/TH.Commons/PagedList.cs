@@ -53,42 +53,42 @@ namespace TH.Commons
         /// <summary>
         /// Zwraca całkowitą ilość stron.
         /// </summary>
-        public int TotalPages { get; private set; }
+        public int TotalPages { get; }
 
         /// <summary>
         /// Zwraca całkowitą ilość rekordów.
         /// </summary>
-        public int TotalCount { get; private set; }
+        public int TotalCount { get; }
 
         /// <summary>
         /// Zwraca indeks bieżącej strony.
         /// </summary>
-        public int PageIndex { get; private set; }
+        public int PageIndex { get; }
 
         /// <summary>
         /// Zwraca ustawioną ilość rekordów dla strony.
         /// </summary>
-        public int PageSize { get; private set; }
+        public int PageSize { get; }
 
         /// <summary>
         /// Jeśli <c>true</c> to znaczy, że istnieje poprzednia strona, w przeciwnym wypadku <c>false</c>.
         /// </summary>
-        public bool HasPreviousPage { get; private set; }
+        public bool HasPreviousPage { get; }
 
         /// <summary>
         /// Jeśli <c>true</c> to znaczy, że istnieje następna strona, w przeciwnym wypadku <c>false</c>.
         /// </summary>
-        public bool HasNextPage { get; private set; }
+        public bool HasNextPage { get; }
 
         /// <summary>
         /// Jeśli <c>true</c> to znaczy, że jest to pierwsza strona, w przeciwnym wypadku <c>false</c>.
         /// </summary>
-        public bool IsFirstPage { get; private set; }
+        public bool IsFirstPage { get; }
 
         /// <summary>
         /// Jeśli <c>true</c> to znaczy, że jest to ostatnia strona, w przeciwnym wypadku <c>false</c>.
         /// </summary>
-        public bool IsLastPage { get; private set; }
+        public bool IsLastPage { get; }
     }
 
     // ReSharper restore PossibleMultipleEnumeration

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -22,26 +21,6 @@ namespace TH.Commons
             return string.IsNullOrEmpty(value);
         }
 
-        public static string Fmt(this string value, params object[] args)
-        {
-            return String.Format(value, args);
-        }
-
-        public static string Fmt(this string value, object arg0)
-        {
-            return String.Format(value, arg0);
-        }
-
-        public static string Fmt(this string value, object arg0, object arg1)
-        {
-            return String.Format(value, arg0, arg1);
-        }
-
-        public static string Fmt(this string value, object arg0, object arg1, object arg2)
-        {
-            return String.Format(value, arg0, arg1, arg2);
-        }
-
         public static string Hash(this string s, string salt = null)
         {
             var hash = new StringBuilder();
@@ -59,13 +38,13 @@ namespace TH.Commons
             var lastCharInX = int.Parse(x.ToString(CultureInfo.InvariantCulture).Last().ToString(CultureInfo.InvariantCulture));
             if (x == 1)
             {
-                return one.Fmt(x);
+                return string.Format(one, x);
             }
             if (lastCharInX > 1 && lastCharInX < 5 && (x < 10 || x > 21))
             {
-                return twoFour.Fmt(x);
+                return string.Format(twoFour, x);
             }
-            return zeroOrOther.Fmt(x);
+            return string.Format(zeroOrOther, x);
         }
 
         public static string ToTitleCase(this string str)

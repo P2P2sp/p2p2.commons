@@ -14,7 +14,7 @@ namespace TH.Commons
                 var byteArray = Encoding.ASCII.GetBytes(input);
                 return hmac
                     .ComputeHash(byteArray)
-                    .Aggregate("", (s, e) => s + String.Format("{0:x2}", e), s => s);
+                    .Aggregate("", (s, e) => s + $"{e:x2}", s => s);
             }
         }
     }

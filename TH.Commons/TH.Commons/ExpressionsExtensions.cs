@@ -18,7 +18,7 @@ namespace TH.Commons
                 exp = e.Body.RemoveUnary() as MemberExpression;
                 if (exp == null)
                 {
-                    throw new NullReferenceException("Can not retrieve info about member of {0}".Fmt(e.ToString()));
+                    throw new NullReferenceException($"Can not retrieve info about member of {e}");
                 }
             }
             else
@@ -39,7 +39,7 @@ namespace TH.Commons
         public static Expression RemoveUnary(this Expression body)
         {
             var unary = body as UnaryExpression;
-            return unary != null ? unary.Operand : body;
+            return unary?.Operand ?? body;
         }
     }
 }
