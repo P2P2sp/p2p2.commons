@@ -12,5 +12,18 @@ namespace TH.Commons
             }
             return en;
         }
+
+        public static bool IsNullOrEmpty<T>(this IList<T> list)
+        {
+            return list == null || list.Count == 0;
+        }
+
+        /// <summary>
+        /// Returns true only if list is NOT null, and is empty
+        /// </summary>
+        public static bool IsEmptyList<T>(this IList<T> list)
+        {
+            return list != null && list.Count == 0;
+        }
     }
 }
