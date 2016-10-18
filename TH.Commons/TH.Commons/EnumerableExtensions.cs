@@ -1,29 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TH.Commons
 {
     public static class EnumerableExtensions
     {
-        public static IList<T> AddRange<T>(this IList<T> en, IEnumerable<T> collection)
+        public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
         {
-            foreach (var item in collection)
+            foreach (var i in enumerable)
             {
-                en.Add(item);
+                action(i);
             }
-            return en;
-        }
-
-        public static bool IsNullOrEmpty<T>(this IList<T> list)
-        {
-            return list == null || list.Count == 0;
-        }
-
-        /// <summary>
-        /// Returns true only if list is NOT null, and is empty
-        /// </summary>
-        public static bool IsEmptyList<T>(this IList<T> list)
-        {
-            return list != null && list.Count == 0;
         }
     }
 }
