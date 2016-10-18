@@ -14,6 +14,9 @@ namespace TH.Commons
             return d?.ToString(format) ?? defaultValue;
         }
 
+        /// <summary>
+        /// Polish format
+        /// </summary>
         public static string FormatDuration(this TimeSpan duration)
         {
             if (duration.TotalHours > 24)
@@ -31,6 +34,9 @@ namespace TH.Commons
             return $"{duration.Minutes}min";
         }
 
+        /// <summary>
+        /// Polish format
+        /// </summary>
         public static string FormatDurationLong(this TimeSpan duration)
         {
             if (duration.TotalHours > 24)
