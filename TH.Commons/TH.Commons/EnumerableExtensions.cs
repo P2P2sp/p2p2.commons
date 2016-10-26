@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TH.Commons
 {
@@ -11,6 +12,11 @@ namespace TH.Commons
             {
                 action(i);
             }
+        }
+
+        public static bool AreSame<T>(this IEnumerable<T> enumerable, IEnumerable<T> value)
+        {
+            return enumerable.All(value.Contains);
         }
     }
 }
