@@ -14,7 +14,14 @@ namespace TH.Commons
             }
         }
 
-        public static bool AreSame<T>(this IEnumerable<T> enumerable, IEnumerable<T> value)
+        /// <summary>
+        /// Compares two enumerables.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool IsEqual<T>(this IEnumerable<T> enumerable, IEnumerable<T> value)
         {
             return enumerable.All(value.Contains);
         }
