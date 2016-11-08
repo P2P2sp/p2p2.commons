@@ -19,7 +19,7 @@ namespace TH.Commons
 
         public static DateTime ReplaceTime(this DateTime dt, DateTime time)
         {
-            return dt.Date.AddHours(time.Hour).AddMinutes(time.Minute).AddSeconds(time.Second);
+            return dt.Date.AddTicks(time.TimeOfDay.Ticks);
         }
 
         public static DateTime? ReplaceTime(this DateTime? dt, DateTime time)
