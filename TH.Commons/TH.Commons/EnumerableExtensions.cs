@@ -16,11 +16,6 @@ namespace TH.Commons
         /// <summary>
         /// Compares two enumerables.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="enumerable"></param>
-        /// <param name="value"></param>
-        /// <param name="comparer"></param>
-        /// <returns></returns>
         public static bool IsEqual<T>(this IEnumerable<T> enumerable, IEnumerable<T> value, IEqualityComparer<T> comparer = null)
         {
             var cnt = new Dictionary<T, int>(comparer);
@@ -49,6 +44,20 @@ namespace TH.Commons
             foreach (var c in cnt.Values)
             {
                 if (c != 0) return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Checks if enumerable consists of distinct elements.
+        /// </summary>
+        public static bool HasDistinctElementsBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+        {
+            var knownKeys = new HashSet<TKey>();
+            foreach (var sourceItem in source)
+            {
+                if (!knownKeys.Add(keySelector(sourceItem)))
+                    return false;
             }
             return true;
         }
