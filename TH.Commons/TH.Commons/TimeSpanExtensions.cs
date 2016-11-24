@@ -14,45 +14,24 @@ namespace TH.Commons
             return d?.ToString(format) ?? defaultValue;
         }
 
-        /// <summary>
-        /// Polish format
-        /// </summary>
-        public static string FormatDuration(this TimeSpan duration)
+        public static string ToReadableAgeString(this TimeSpan span)
         {
-            if (duration.TotalHours > 24)
-            {
-                return $"{Math.Floor(duration.TotalHours)}g. {duration.Minutes}min";
-            }
-            if (duration.Hours > 0 && duration.Minutes != 0)
-            {
-                return $"{duration.Hours}g. {duration.Minutes}min";
-            }
-            if (duration.Hours > 0 && duration.Minutes == 0)
-            {
-                return $"{duration.Hours}g.";
-            }
-            return $"{duration.Minutes}min";
+            return $"{span.Days / 365.25:0}";
         }
 
-        /// <summary>
-        /// Polish format
-        /// </summary>
-        public static string FormatDurationLong(this TimeSpan duration)
+        public static string ToReadableString(this TimeSpan span)
         {
-            if (duration.TotalHours > 24)
-            {
-                var hours = (int)Math.Floor(duration.TotalHours);
-                return $"{hours} {hours.ToString("godzina", "godziny", "godzin")} {duration.Minutes} {duration.Minutes.ToString("minuta", "minuty", "minut")}";
-            }
-            if (duration.Hours > 0 && duration.Minutes != 0)
-            {
-                return $"{duration.Hours} {duration.Hours.ToString("godzina", "godziny", "godzin")} {duration.Minutes} {duration.Minutes.ToString("minuta", "minuty", "minut")}";
-            }
-            if (duration.Hours > 0 && duration.Minutes == 0)
-            {
-                return $"{duration.Hours} {duration.Hours.ToString("godzina", "godziny", "godzin")}";
-            }
-            return $"{duration.Minutes} {duration.Minutes.ToString("minuta", "minuty", "minut")}";
+            var formatted = string.Format("{0}{1}{2}{3}",
+                span.Duration().Days > 0 ? $"{span.Days:0}d. " : string.Empty,
+                span.Duration().Hours > 0 ? $"{span.Hours:0}g " : string.Empty,
+                span.Duration().Minutes > 0 ? $"{span.Minutes:0}min " : string.Empty,
+                span.Duration().Seconds > 0 ? $"{span.Seconds:0}s" : string.Empty);
+
+            if (formatted.EndsWith(" ")) formatted = formatted.TrimEnd();
+
+            if (string.IsNullOrEmpty(formatted)) formatted = "0s";
+
+            return formatted;
         }
     }
 } 
