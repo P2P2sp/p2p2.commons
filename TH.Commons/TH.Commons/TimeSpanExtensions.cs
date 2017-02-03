@@ -20,7 +20,9 @@ namespace TH.Commons
         }
 
         /// <summary>
-        /// Displays days if any, and after that hours if not zero, minutes if not zero and/or seconds if not zero. If param is zero displays 0s.
+        /// Displays days if any, and after that hours if not zero, then minutes if not zero, and finally seconds if not zero.
+        /// Each part of TimeSpan is checked for zero individually and is displayed only id > 0. 
+        /// If param is zero displays 0s.
         /// </summary>
         public static string ToReadableString(this TimeSpan span)
         {
@@ -35,14 +37,17 @@ namespace TH.Commons
         }
 
         /// <summary>
-        /// Displays days if any, and after that time (hours, minutes and second) if any of its parts are not zero. If param is zero displays 0s.
+        /// Displays days if any, and after that hours if them or minutes or second are not zero, then minutes if them or seconds are not zero, 
+        /// and finally seconds if not zero. So only hours (when mins or secs > 0) and minutes (when seconds > 0) can be displayed even if zero. 
+        /// If param is zero displays 0s.
         /// </summary>
-        public static string ToReadableStringWholeTime(this TimeSpan span)
+        public static string ToReadableStringNoGaps(this TimeSpan span)
         {
-            var formatted = string.Format("{0}{1}",
+            var formatted = string.Format("{0}{1}{2}{3}",
                 span.Duration().Days > 0 ? $"{span.Days:0}d. " : string.Empty,
-                span.Duration().Hours > 0 || span.Duration().Minutes > 0 || span.Duration().Seconds > 0 ? 
-                $"{span.Hours:0}:{span.Minutes:0}:{span.Seconds:0}" : string.Empty);
+                span.Duration().Hours > 0 || span.Duration().Minutes > 0 || span.Duration().Seconds > 0 ? $"{span.Hours:0}g " : string.Empty,
+                span.Duration().Minutes > 0 || span.Duration().Seconds > 0 ? $"{span.Minutes:0}min " : string.Empty,
+                span.Duration().Seconds > 0 ? $"{span.Seconds:0}s" : string.Empty);
             if (formatted.EndsWith(" ")) formatted = formatted.TrimEnd();
             if (string.IsNullOrEmpty(formatted)) formatted = "0s";
             return formatted;
