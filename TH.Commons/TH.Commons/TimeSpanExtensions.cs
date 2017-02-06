@@ -43,14 +43,17 @@ namespace TH.Commons
         /// </summary>
         public static string ToReadableStringNoGaps(this TimeSpan span)
         {
+            var duration = span.Duration();
             var formatted = string.Format("{0}{1}{2}{3}",
-                span.Duration().Days > 0 ? $"{span.Days:0}d. " : string.Empty,
-                span.Duration().Hours > 0 || span.Duration().Minutes > 0 || span.Duration().Seconds > 0 ? $"{span.Hours:0}g " : string.Empty,
-                span.Duration().Minutes > 0 || span.Duration().Seconds > 0 ? $"{span.Minutes:0}min " : string.Empty,
-                span.Duration().Seconds > 0 ? $"{span.Seconds:0}s" : string.Empty);
+                duration.Days > 0 ? $"{span.Days:0}d. " : string.Empty,
+                duration.Hours > 0 || (duration.Days > 0 && (duration.Minutes > 0 || duration.Seconds > 0)) ?
+                    $"{span.Hours:0}g " : string.Empty,
+                duration.Minutes > 0 || (duration.Seconds > 0 && (duration.Days > 0 || duration.Hours > 0)) ? 
+                    $"{span.Minutes:0}min " : string.Empty,
+                duration.Seconds > 0 ? $"{span.Seconds:0}s" : string.Empty);
             if (formatted.EndsWith(" ")) formatted = formatted.TrimEnd();
             if (string.IsNullOrEmpty(formatted)) formatted = "0s";
             return formatted;
         }
     }
-} 
+}
