@@ -46,6 +46,7 @@
     <Compile Include="EnumHelper.cs" />
     <Compile Include="ConvertHelpers.cs" />
     <Compile Include="GuidExtensions.cs" />
+    <Compile Include="IntExtensions.cs" />
     <Compile Include="Json\JsonHelper.cs" />
     <Compile Include="ListExtensions.cs" />
     <Compile Include="ExpressionsExtensions.cs" />
