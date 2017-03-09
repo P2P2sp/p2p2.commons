@@ -169,11 +169,11 @@ namespace TH.Commons
                 minutes++;
                 if (minutes == 60)
                 {
-                    minutes--;
+                    minutes = 0;
                     hours++;
                     if (hours == 24)
                     {
-                        hours--;
+                        hours = 0;
                         days++;
                     }
                 }
@@ -196,11 +196,11 @@ namespace TH.Commons
                 minutes++;
                 if (minutes == 60)
                 {
-                    minutes--;
+                    minutes = 0;
                     hours++;
                     if (hours == 24)
                     {
-                        hours--;
+                        hours = 0;
                         days++;
                     }
                 }
