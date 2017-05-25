@@ -34,5 +34,29 @@ namespace TH.Commons
             if (dateTime1 == null || dateTime2 == null) return false;
             return AreEqualToTheSeconds(dateTime1.Value, dateTime2.Value);
         }
+
+        /// <summary>
+        /// For any date in a week, returns date of a closest monday before or equal to given date
+        /// </summary>
+        public static DateTime GetLatestMondayDateBefore(this DateTime value)
+        {
+            while (value.DayOfWeek != DayOfWeek.Monday)
+            {
+                value = value.AddDays(-1);
+            }
+            return value.Date;
+        }
+
+        /// <summary>
+        /// For any date in a week, returns date of a closest sunday after or equal to given date
+        /// </summary>
+        public static DateTime GetEarliestSundayDateAfter(this DateTime value)
+        {
+            while (value.DayOfWeek != DayOfWeek.Sunday)
+            {
+                value = value.AddDays(1);
+            }
+            return value.Date;
+        }
     }
 }
