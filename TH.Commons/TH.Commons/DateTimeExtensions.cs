@@ -58,5 +58,13 @@ namespace TH.Commons
             }
             return value.Date;
         }
+
+        /// <summary>
+        /// Returns new DateTime with only year and month from original value, and day set to first day
+        /// </summary>
+        public static DateTime GetMonthAndYear(this DateTime value)
+        {
+            return new DateTime(value.Year, value.Month, 1);
+        }
     }
 }
