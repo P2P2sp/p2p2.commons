@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>
     </CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Release\TH.Commons.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
