@@ -44,7 +44,8 @@ namespace TH.Commons
         }
 
         /// <summary>
-        /// For given DateTime value, method returns the closest date after which DayOfWeek property equal to given dayOfWeek parameter, or returns given DateTime value, if its DayOfWeek equals given day parameter.
+        /// For given DateTime value, method returns the closest date after which DayOfWeek property equal to given dayOfWeek parameter, 
+        /// or returns given DateTime value, if its DayOfWeek equals given day parameter.
         /// Calls ".AddDays(1)" method from 0 to 6 times.
         /// </summary>
         public static DateTime GetDateNextOrCurrent(this DateTime value, DayOfWeek dayOfWeek)
@@ -57,7 +58,6 @@ namespace TH.Commons
 
         /// <summary>
         /// For given DateTime value, method returns the closest date after which DayOfWeek property equal to given dayOfWeek parameter.
-        /// Calls ".AddDays(1)" method from 1 to 7 times.
         /// </summary>
         public static DateTime GetDateNext(this DateTime value, DayOfWeek dayOfWeek)
         {
@@ -68,8 +68,8 @@ namespace TH.Commons
         }
 
         /// <summary>
-        /// For given DateTime value, method returns the closest date before which DayOfWeek property equal to given dayOfWeek parameter, or returns given DateTime value, if its DayOfWeek equals given day parameter.
-        /// Calls ".AddDays(-1)" method from 0 to 6 times.
+        /// For given DateTime value, method returns the closest date before which DayOfWeek property equal to given dayOfWeek parameter, 
+        /// or returns given DateTime value, if its DayOfWeek equals given day parameter.
         /// </summary>
         public static DateTime GetDatePreviousOrCurrent(this DateTime value, DayOfWeek dayOfWeek)
         {
@@ -81,7 +81,6 @@ namespace TH.Commons
 
         /// <summary>
         /// For given DateTime value, method returns the closest date before which DayOfWeek property equal to given dayOfWeek parameter.
-        /// Calls ".AddDays(-1)" method from 1 to 7 times.
         /// </summary>
         public static DateTime GetDatePrevious(this DateTime value, DayOfWeek dayOfWeek)
         {
