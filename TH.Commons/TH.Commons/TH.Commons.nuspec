@@ -11,7 +11,7 @@
         <dependencies></dependencies>
     </metadata>
     <files>
-      <file src="..\..\build\TH.Commons.dll" target="lib\Net40" />
-      <file src="..\..\build\TH.Commons.xml" target="lib\Net40" />
+      <file src="..\..\TH.Commons.dll" target="lib\Net40" />
+      <file src="..\..\TH.Commons.xml" target="lib\Net40" />
     </files>
 </package>
