@@ -36,35 +36,59 @@ namespace TH.Commons
         }
 
         /// <summary>
-        /// For any date in a week, returns date of a closest monday before or equal to given date
-        /// </summary>
-        public static DateTime GetLatestMondayDateBefore(this DateTime value)
-        {
-            while (value.DayOfWeek != DayOfWeek.Monday)
-            {
-                value = value.AddDays(-1);
-            }
-            return value.Date;
-        }
-
-        /// <summary>
-        /// For any date in a week, returns date of a closest sunday after or equal to given date
-        /// </summary>
-        public static DateTime GetEarliestSundayDateAfter(this DateTime value)
-        {
-            while (value.DayOfWeek != DayOfWeek.Sunday)
-            {
-                value = value.AddDays(1);
-            }
-            return value.Date;
-        }
-
-        /// <summary>
-        /// Returns new DateTime with only year and month from original value, and day set to first day
+        /// Returns new DateTime with only year and month from original value, and day set to first day.
         /// </summary>
         public static DateTime GetMonthAndYear(this DateTime value)
         {
             return new DateTime(value.Year, value.Month, 1);
+        }
+
+        /// <summary>
+        /// For given DateTime value, method returns the closest date after which DayOfWeek property equal to given dayOfWeek parameter, or returns given DateTime value, if its DayOfWeek equals given day parameter.
+        /// Calls ".AddDays(1)" method from 0 to 6 times.
+        /// </summary>
+        public static DateTime GetDateNextOrCurrent(this DateTime value, DayOfWeek dayOfWeek)
+        {
+            var date = value.Date;
+            var dif = dayOfWeek - date.DayOfWeek;
+            if (dif < 0) dif += 7;
+            return date.AddDays(dif);
+        }
+
+        /// <summary>
+        /// For given DateTime value, method returns the closest date after which DayOfWeek property equal to given dayOfWeek parameter.
+        /// Calls ".AddDays(1)" method from 1 to 7 times.
+        /// </summary>
+        public static DateTime GetDateNext(this DateTime value, DayOfWeek dayOfWeek)
+        {
+            var date = value.Date;
+            var dif = dayOfWeek - date.DayOfWeek;
+            if (dif <= 0) dif += 7;
+            return date.AddDays(dif);
+        }
+
+        /// <summary>
+        /// For given DateTime value, method returns the closest date before which DayOfWeek property equal to given dayOfWeek parameter, or returns given DateTime value, if its DayOfWeek equals given day parameter.
+        /// Calls ".AddDays(-1)" method from 0 to 6 times.
+        /// </summary>
+        public static DateTime GetDatePreviousOrCurrent(this DateTime value, DayOfWeek dayOfWeek)
+        {
+            var date = value.Date;
+            var dif = dayOfWeek - date.DayOfWeek;
+            if (dif > 0) dif -= 7;
+            return date.AddDays(dif);
+        }
+
+        /// <summary>
+        /// For given DateTime value, method returns the closest date before which DayOfWeek property equal to given dayOfWeek parameter.
+        /// Calls ".AddDays(-1)" method from 1 to 7 times.
+        /// </summary>
+        public static DateTime GetDatePrevious(this DateTime value, DayOfWeek dayOfWeek)
+        {
+            var date = value.Date;
+            var dif = dayOfWeek - date.DayOfWeek;
+            if (dif >= 0) dif -= 7;
+            return date.AddDays(dif);
         }
     }
 }

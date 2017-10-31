@@ -10,4 +10,8 @@
         <copyright>Copyright &#0169; 2015, P2P2 Sp. z o.o.</copyright>
         <dependencies></dependencies>
     </metadata>
+    <files>
+      <file src="..\..\build\TH.Commons.dll" target="lib\Net40" />
+      <file src="..\..\build\TH.Commons.xml" target="lib\Net40" />
+    </files>
 </package>
