@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -31,20 +32,6 @@ namespace TH.Commons
                 foreach (var b in result) hash.Append(b.ToString("x2"));
             }
             return hash.ToString();
-        }
-
-        public static string ToString(this int x, string one, string twoFour, string zeroOrOther)
-        {
-            var lastCharInX = int.Parse(x.ToString(CultureInfo.InvariantCulture).Last().ToString(CultureInfo.InvariantCulture));
-            if (x == 1)
-            {
-                return string.Format(one, x);
-            }
-            if (lastCharInX > 1 && lastCharInX < 5 && (x < 10 || x > 21))
-            {
-                return string.Format(twoFour, x);
-            }
-            return string.Format(zeroOrOther, x);
         }
 
         public static string ToTitleCase(this string str)
@@ -118,6 +105,17 @@ namespace TH.Commons
                 builder.Append(char.IsLetterOrDigit(t) ? t : ' ');
             }
             return Regex.Replace(builder.ToString(), "[ ]{1,}", "-", RegexOptions.None);
+        }
+
+        /// <summary>
+        /// Checks if given string is proper currency value (only 2 decimals allowed), and within given min-max inclusive values.
+        /// </summary>
+        public static bool IsValidCurrencyNumber(string x, decimal minValueInclusive = decimal.MinValue, decimal maxValueInclusive = decimal.MaxValue)
+        {
+            decimal d;
+            if (decimal.TryParse(x, out d))
+                return d >= minValueInclusive && d <= maxValueInclusive && Math.Round(d, 2) == d;
+            return false;
         }
     }
 }
