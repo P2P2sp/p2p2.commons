@@ -156,6 +156,14 @@ namespace TH.Commons
         }
 
         /// <summary>
+        /// Displays time span rounded to full hours and minutes in format "Xh Ymin", where X(double) are total hours truncated, and Y(int) are minutes.
+        /// </summary>
+        public static string ToReadableStringHoursAndMinutes(this TimeSpan span)
+        {
+            return $"{Math.Floor(span.TotalHours.Truncate()):F0}h {span.Minutes}min";
+        }
+
+        /// <summary>
         /// Rounds given time span to minutes. Up from 30 seconds and more. Down from 29 seconds and less.
         /// </summary>
         public static TimeSpan RoundToMinutesHalfUp(this TimeSpan t)
