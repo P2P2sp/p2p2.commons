@@ -117,5 +117,18 @@ namespace TH.Commons
                 return d >= minValueInclusive && d <= maxValueInclusive && Math.Round(d, 2) == d;
             return false;
         }
+
+        /// <summary>
+        /// Trims string only if it's longer than maxLength. 
+        /// Is so, it returns trimmed string with provided suffix at the end, which combined are no longer than maxLength.
+        /// For value = "test56789" and maxLength = 8 and suffix = "...", returns: "test5...".
+        /// </summary>
+        /// <returns>String no longer than maxLength</returns>
+        public static string Trim(this string value, int maxLength, string suffixIfTrimmed)
+        {
+            return value.Length > maxLength
+                ? $"{value.Trim(maxLength - suffixIfTrimmed.Length)}{suffixIfTrimmed}"
+                : value;
+        }
     }
 }
