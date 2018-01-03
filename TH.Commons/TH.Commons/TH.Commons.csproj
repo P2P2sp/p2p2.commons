@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="DayOfWeekHelpers.cs" />
     <Compile Include="DoubleExtensions.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="EnumHelper.cs" />
