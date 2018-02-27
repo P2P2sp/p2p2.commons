@@ -9,10 +9,12 @@ namespace TH.Commons
             if (from > to) throw new ArgumentException($"Datetime from '{from:G}' cannot be later than datetime to '{to:G}'.");
             From = from;
             To = to;
+            Duration = To - From;
         }
 
         public DateTime From { get; }
         public DateTime To { get; }
+        public TimeSpan Duration { get; }
 
         public override string ToString()
         {
