@@ -88,5 +88,13 @@ namespace TH.Commons
             if (dif >= 0) dif -= 7;
             return date.AddDays(dif);
         }
+
+        /// <summary>
+        /// Returns true if DayOfWeek part of provided DateTime is saturday or sunday.
+        /// </summary>
+        public static bool IsWeekend(this DateTime value)
+        {
+            return value.DayOfWeek == DayOfWeek.Saturday || value.DayOfWeek == DayOfWeek.Sunday;
+        }
     }
 }
