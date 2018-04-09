@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>P2P2.Commons</id>
+        <version>$version$</version>
+        <authors>P2P2 Sp. z o.o.</authors>
+        <owners>P2P2 Sp. z o.o.</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>P2P2 Commons</description>
+        <copyright>Copyright &#0169; 2015, P2P2 Sp. z o.o.</copyright>
+        <dependencies></dependencies>
+    </metadata>
+    <files>
+      <file src="bin\Release\TH.Commons.dll" target="lib\Net40" />
+      <file src="bin\Release\Th.Commons.xml" target="lib\Net40" />
+    </files>
+</package>
