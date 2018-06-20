@@ -160,7 +160,15 @@ namespace P2P2.Commons
         /// </summary>
         public static string ToReadableStringHoursAndMinutes(this TimeSpan span)
         {
-            return $"{Math.Floor(span.TotalHours.Truncate()):F0}h {span.Minutes}min";
+            return ToReadableStringHoursAndMinutes(span, "h", "min");
+        }
+
+        /// <summary>
+        /// Displays time span rounded to full hours and minutes in format $"X{hoursText} Y{minutesText}", where X(double) are total hours truncated, and Y(int) are minutes.
+        /// </summary>
+        public static string ToReadableStringHoursAndMinutes(this TimeSpan span, string hoursText, string minutesText)
+        {
+            return $"{Math.Floor(span.TotalHours.Truncate()):F0}{hoursText} {span.Minutes}{minutesText}";
         }
 
         /// <summary>
