@@ -1,4 +1,5 @@
 ﻿using System;
+// ReSharper disable UnusedMember.Global
 
 namespace P2P2.Commons
 {
@@ -95,6 +96,23 @@ namespace P2P2.Commons
         public static bool IsWeekend(this DateTime value)
         {
             return value.DayOfWeek == DayOfWeek.Saturday || value.DayOfWeek == DayOfWeek.Sunday;
+        }
+
+        /// <summary>
+        /// Rounds given datetime to closest full hour but only if rounding is less or equal to given limit in max minutes gap parameter.
+        /// It doesn't take seconds into consideration. Only raw Minutes value of provided DateTime value.
+        /// So given 15 as max minutes gap: for 14:15 will return 14:00, for 14:16 will return 14:16, for 12:45 will return 13:00, and for 12:40 will return 12:40.
+        /// When max minutes gap parameter equals zero, returns original value.
+        /// </summary>
+        public static DateTime RoundToFullHour(this DateTime value, int maxMinutesGap)
+        {
+            if (maxMinutesGap == 0)
+                return value;
+            if (value.Minute <= maxMinutesGap)
+                return new DateTime(value.Year, value.Month, value.Day, value.Hour, 0, 0);
+            if (value.Minute >= 60 - maxMinutesGap)
+                return new DateTime(value.Year, value.Month, value.Day, value.Hour, 0, 0).AddHours(1);
+            return value;
         }
     }
 }
