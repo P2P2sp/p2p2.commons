@@ -27,9 +27,15 @@ namespace P2P2.Commons
             if (other.To == From) return false;
             if (other.From == From) return true;
             if (other.To == To) return true;
-            if (other.From > From)
-                return other.From < To;
-            return other.To > From;
+            return other.From > From
+                ? other.From < To
+                : other.To > From;
+        }
+
+        public TimeSpan GetOverlappingTime(PairDateTimes other)
+        {
+            if(!IsOverlappingWith(other)) return TimeSpan.Zero;
+            return (To < other.To ? To : other.To) - (From > other.From ? From : other.From);
         }
     }
 }
