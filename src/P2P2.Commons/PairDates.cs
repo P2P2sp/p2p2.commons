@@ -111,5 +111,7 @@ namespace P2P2.Commons
         {
             return FromDate <= value.Date && value.Date <= ToDate;
         }
+
+        public int GetDaysCount() => (int)(ToDate - FromDate).TotalDays;
     }
 }
