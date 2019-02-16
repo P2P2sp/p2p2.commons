@@ -10,11 +10,9 @@ namespace P2P2.Commons
     {
         public static string Trim(this string value, int maxLength)
         {
-            if (!value.IsNullOrEmpty() && value.Length > maxLength)
-            {
-                return value.Trim().Substring(0, maxLength);
-            }
-            return value;
+            return !value.IsNullOrEmpty() && value.Length > maxLength
+                ? value.Trim().Substring(0, maxLength)
+                : value;
         }
 
         public static bool IsNullOrEmpty(this string value)
@@ -22,6 +20,12 @@ namespace P2P2.Commons
             return string.IsNullOrEmpty(value);
         }
 
+        /// <summary>
+        /// Hash uses SHA256 algorithm.
+        /// </summary>
+        /// <param name="s">String to hash</param>
+        /// <param name="salt">Optional salt</param>
+        /// <returns></returns>
         public static string Hash(this string s, string salt = null)
         {
             var hash = new StringBuilder();
@@ -112,10 +116,7 @@ namespace P2P2.Commons
         /// </summary>
         public static bool IsValidCurrencyNumber(string x, decimal minValueInclusive = decimal.MinValue, decimal maxValueInclusive = decimal.MaxValue)
         {
-            decimal d;
-            if (decimal.TryParse(x, out d))
-                return d >= minValueInclusive && d <= maxValueInclusive && Math.Round(d, 2) == d;
-            return false;
+            return decimal.TryParse(x, out var d) && (d >= minValueInclusive && d <= maxValueInclusive && Math.Round(d, 2) == d);
         }
 
         /// <summary>
@@ -129,6 +130,15 @@ namespace P2P2.Commons
             return value.Length > maxLength
                 ? $"{value.Trim(maxLength - suffixIfTrimmed.Length)}{suffixIfTrimmed}"
                 : value;
+        }
+
+        private static readonly Regex emailAddressRegex = new Regex(@"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|" 
+            + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)" 
+            + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+        public static  bool IsEmailAddress(this string email)
+        {
+            return emailAddressRegex.IsMatch(email);
         }
     }
 }
