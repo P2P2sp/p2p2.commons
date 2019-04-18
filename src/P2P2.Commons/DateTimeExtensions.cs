@@ -114,5 +114,15 @@ namespace P2P2.Commons
                 return new DateTime(value.Year, value.Month, value.Day, value.Hour, 0, 0).AddHours(1);
             return value;
         }
+
+        public static DateTime RoundDown(this DateTime dt, TimeSpan rounding)
+        {
+            return new DateTime((dt.Ticks / rounding.Ticks) * rounding.Ticks, dt.Kind);
+        }
+
+        public static DateTime RoundUp(this DateTime dt, TimeSpan rounding)
+        {
+            return new DateTime((dt.Ticks + rounding.Ticks - 1) / rounding.Ticks * rounding.Ticks, dt.Kind);
+        }
     }
 }
