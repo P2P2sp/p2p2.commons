@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace P2P2.Commons
 {
@@ -7,12 +7,15 @@ namespace P2P2.Commons
     /// </summary>
     public static class TimeSpanExtensions
     {
+        private static readonly TimeSpan oneMinute = TimeSpan.FromMinutes(1);
+        private static readonly TimeSpan oneSecond = TimeSpan.FromSeconds(1);
+
         /// <summary>
         /// ToString for nullable TimeSpan
         /// </summary>
         public static string ToString(this TimeSpan? d, string format)
         {
-            return ToString(d, format, "");
+            return ToString(d, format, string.Empty);
         }
 
         /// <summary>
@@ -21,6 +24,23 @@ namespace P2P2.Commons
         public static string ToString(this TimeSpan? d, string format, string defaultValue)
         {
             return d?.ToString(format) ?? defaultValue;
+        }
+
+        /// <summary>
+        /// Returns TimeSpan formated to duration: {total hours}:{minutes}:{seconds}
+        /// </summary>
+        public static string ToDurationString(this TimeSpan t, bool withSeconds = true)
+        {
+            var isNegative = t < TimeSpan.Zero;
+            t = t.Duration();
+
+            var totalHours = Math.Abs((int)t.TotalHours);
+            var minutes = Math.Abs(withSeconds ? t.Minutes : (t.Seconds > 30 ? t.Add(oneMinute).Minutes : t.Minutes));
+            var seconds = Math.Abs(!withSeconds ? t.Seconds : (t.Milliseconds > 500 ? t.Add(oneSecond).Seconds : t.Seconds));
+
+            return isNegative
+                ? withSeconds ? $"-{totalHours:00}:{minutes:00}:{seconds:00}" : $"-{totalHours:00}:{minutes:00}"
+                : withSeconds ? $"{totalHours:00}:{minutes:00}:{seconds:00}" : $"{totalHours:00}:{minutes:00}";
         }
 
         /// <summary>
