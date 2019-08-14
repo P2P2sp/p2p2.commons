@@ -115,14 +115,14 @@ namespace P2P2.Commons
             return value;
         }
 
-        public static DateTime RoundDown(this DateTime dt, TimeSpan rounding)
-        {
-            return new DateTime((dt.Ticks / rounding.Ticks) * rounding.Ticks, dt.Kind);
-        }
+        //public static DateTime RoundDown(this DateTime dt, TimeSpan rounding)
+        //{
+        //    return new DateTime((dt.Ticks / rounding.Ticks) * rounding.Ticks, dt.Kind);
+        //}
 
-        public static DateTime RoundUp(this DateTime dt, TimeSpan rounding)
-        {
-            return new DateTime((dt.Ticks + rounding.Ticks - 1) / rounding.Ticks * rounding.Ticks, dt.Kind);
-        }
+        //public static DateTime RoundUp(this DateTime dt, TimeSpan rounding)
+        //{
+        //    return new DateTime((dt.Ticks + rounding.Ticks - 1) / rounding.Ticks * rounding.Ticks, dt.Kind);
+        //}
     }
 }
